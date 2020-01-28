@@ -1,6 +1,6 @@
-# favorite-cinemas-list
+# favorite-cinemas-list 
 
-This project was bootstrapped with webpack configuration file while using the [google-maps-react library](https://www.npmjs.com/package/google-maps-react).
+ :clapper: This project was bootstrapped with webpack configuration file while using the [google-maps-react library](https://www.npmjs.com/package/google-maps-react).
 
 ## Installation
 
