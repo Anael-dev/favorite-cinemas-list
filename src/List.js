@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
 import Place from "./Place";
+import "../css/List.css";
 
 function List(props) {
   const { selected, deleteCampus } = props;
@@ -16,11 +17,13 @@ function List(props) {
         ></div>
         <h1
           style={{
-            backgroundImage: 'url("../data/icons/iconfinder_ic_play_circle_filled_white_48px_3669295.svg")',
+            backgroundImage:
+              'url("../data/icons/iconfinder_ic_play_circle_filled_white_48px_3669295.svg")',
             backgroundRepeat: "no-repeat",
             backgroundSize: "27px 27px",
             backgroundPosition: "0px 8px",
             paddingLeft: "32px",
+            opacity: "0.8"
           }}
         >
           My Favourite Cinemas List{" "}

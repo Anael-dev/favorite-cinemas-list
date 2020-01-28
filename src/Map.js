@@ -9,6 +9,7 @@ import {
 
 import places from "../data/places_data";
 import mapStyles from "../css/mapStyles";
+import "../css/Map.css";
 
 function Map(props) {
   const { handleClick } = props;
