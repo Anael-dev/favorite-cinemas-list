@@ -58,7 +58,7 @@ function Map(props) {
             <h3>{selectedPlace.name}</h3>
             <p>{selectedPlace.address}</p>
             <img src={selectedPlace.image} width="200" height="100" />
-            <div class="iw-bottom-gradient" style={{ content: "" }}></div>
+            <div className="iw-bottom-gradient" style={{ content: "" }}></div>
           </div>
         </InfoWindow>
       )}
