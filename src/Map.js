@@ -8,7 +8,7 @@ import {
 } from "react-google-maps";
 
 import places from "../data/places_data";
-import mapStyles from "../css/mapStyles";
+import mapStyles from "./mapStyles";
 import "../css/Map.css";
 
 function Map(props) {
