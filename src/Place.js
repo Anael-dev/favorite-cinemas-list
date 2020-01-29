@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 
 function Place(props) {
-  const { name, deleteCampus } = props;
+  const { name, deletecinema } = props;
 
   return (
       <div
@@ -15,7 +15,7 @@ function Place(props) {
         }}
       >
         {name}
-        <button type="button" onClick={() => deleteCampus(name)}>
+        <button type="button" onClick={() => deletecinema(name)}>
           Delete
         </button>
       </div>

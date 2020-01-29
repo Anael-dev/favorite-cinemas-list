@@ -2,21 +2,29 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { useState } from "react";
 import "../css/style.css";
+import places from "../data/places_data";
 
 import MapContiner from "./Map";
 import List from "./List";
 
 const App = () => {
-  const [campus, setCampus] = useState("");
+  const [cinema, setcinema] = useState("");
   const [selected, setSelected] = useState([]);
 
   function handleClick(name) {
-    setCampus(name);
-    console.log(`I clicked on ${campus}`);
-    addCampus(name);
+    setcinema(name);
+    console.log(`I clicked on ${cinema}`);
+    addcinema(name);
+  }
+  function handleFilter(val) {
+    const filtered = places.filter(place => place.name.includes(val));
+    console.log(filtered);
+    // if (filtered.length > 1) {
+    //   setSelected([filtered]);
+    // }
   }
 
-  function addCampus(val) {
+  function addcinema(val) {
     if (selected.length < 1) {
       setSelected([val]);
     }
@@ -26,14 +34,19 @@ const App = () => {
     console.log(`I selected ${selected}`);
   }
 
-  function deleteCampus(name) {
+  function deletecinema(name) {
     setSelected(currentPlaces => currentPlaces.filter(x => x !== name));
   }
 
   return (
     <div className="wrapper">
-      <MapContiner handleClick={handleClick} />
-      <List selected={selected} deleteCampus={deleteCampus} />
+      <MapContiner handleClick={handleClick} places={places} />
+      <List
+        places={places}
+        selected={selected}
+        deletecinema={deletecinema}
+        handleFilter={handleFilter}
+      />
     </div>
   );
 };

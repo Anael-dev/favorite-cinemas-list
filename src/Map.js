@@ -7,12 +7,11 @@ import {
   InfoWindow
 } from "react-google-maps";
 
-import places from "../data/places_data";
 import mapStyles from "./mapStyles";
 import "../css/Map.css";
 
 function Map(props) {
-  const { handleClick } = props;
+  const { handleClick, places } = props;
   const [selectedPlace, setSelectedPlace] = useState(null);
   const [animation, setAnimation] = useState(2);
 
@@ -69,17 +68,18 @@ function Map(props) {
 const MapWrapped = withScriptjs(withGoogleMap(Map));
 
 export default function MapContiner(props) {
-  const { handleClick } = props;
+  const { handleClick, places } = props;
   return (
     <div style={{ minWidth: "400px", height: "600px" }}>
       <MapWrapped
-        handleClick={handleClick}
         googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${process.env.GOOGLE_KEY}`}
         loadingElement={<div style={{ height: `100%` }} />}
         containerElement={<div style={{ height: `100%` }} />}
         mapElement={<div style={{ height: `100%` }} />}
         scrollwheel={false}
         fullscreenControl={false}
+        handleClick={handleClick}
+        places={places}
       />
     </div>
   );

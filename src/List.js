@@ -1,9 +1,15 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import Place from "./Place";
 import "../css/List.css";
 
 function List(props) {
-  const { selected, deleteCampus } = props;
+  const { selected, deletecinema, handleFilter } = props;
+
+  function handleInput(e) {
+    const value = e.target.value.trim().toLowerCase();
+    console.log(value);
+    handleFilter(value);
+  }
   return (
     <Fragment>
       <ul className="list">
@@ -28,9 +34,15 @@ function List(props) {
         >
           My Favourite Cinemas List{" "}
         </h1>
-        {selected.map(campus => (
-          <li key={campus}>
-            <Place key={campus.id} name={campus} deleteCampus={deleteCampus} />
+        <input
+          type="text"
+          name="filter"
+          placeholder={"find your cinema"}
+          onChange={handleInput}
+        ></input>
+        {selected.map(cinema => (
+          <li key={cinema}>
+            <Place key={cinema.id} name={cinema} deletecinema={deletecinema} />
           </li>
         ))}
       </ul>

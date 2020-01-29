@@ -28,6 +28,20 @@
   left: -190px;
   opacity: 0.8;
 }
+
+.list input {
+  font-family: "Rajdhani", sans-serif;
+  font-size: 15px;
+  margin-bottom: 5px;
+  padding: 10px 10px;
+  border-radius: 5px;
+  background-color: gainsboro;
+  line-height: 1.6;
+}
+
+.list input:active {
+  border: 2px solid #b4c2fa;
+}
 .list li {
   margin: 1px;
   padding: 17px 15px;
