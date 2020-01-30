@@ -3,20 +3,8 @@ import Place from "./Place";
 import "../css/List.css";
 
 function List(props) {
-  const {
-    favourites,
-    deletecinema,
-    handleFilter,
-    valueInput,
-    setValueInput
-  } = props;
+  const { favourites, deletecinema } = props;
 
-  function handleInput(e) {
-    let value = e.target.value.trim().toLowerCase();
-    console.log("handling input", value);
-    setValueInput(value);
-    handleFilter(valueInput);
-  }
   return (
     <Fragment>
       <ul className="list">
@@ -39,15 +27,26 @@ function List(props) {
             opacity: "0.8"
           }}
         >
-          My Favourite Cinemas List
+          My Favourite Cinemas
         </h1>
-        <input
-          type="text"
-          name="filter"
-          placeholder={"find your cinema"}
-          onChange={handleInput}
-          value={valueInput}
-        ></input>
+        {favourites.length < 1 ? (
+          <h2
+            className="empty"
+            style={{
+              backgroundImage: 'url("../data/icons/iconfinder_GoldTicket.svg")',
+              backgroundRepeat: "no-repeat",
+              backgroundSize: "22px 22px",
+              backgroundPosition: "0px 0px",
+              paddingLeft: "25px",
+              lineHeight: "1.5",
+              opacity: "0.8"
+            }}
+          >
+            Your list is empty, want to fill it?
+          </h2>
+        ) : (
+          ""
+        )}
         {favourites.map(cinema => (
           <li key={cinema}>
             <Place key={cinema.id} name={cinema} deletecinema={deletecinema} />

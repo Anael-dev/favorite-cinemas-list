@@ -33,11 +33,19 @@ const App = () => {
     }
   }, [favourites]);
 
-  function handleClick(name) {
-    setCinema(name);
-  }
   function handleFilter(val) {
     setFilterText(val);
+  }
+
+  function handleInput(e) {
+    let value = e.target.value.trim().toLowerCase();
+    console.log("handling input", value);
+    setValueInput(value);
+    handleFilter(valueInput);
+  }
+
+  function handleClick(name) {
+    setCinema(name);
   }
 
   function addcinema(val) {
@@ -55,16 +63,25 @@ const App = () => {
 
   return (
     <div className="wrapper">
-      <MapContiner
-        handleClick={handleClick}
-        places={
-          filterText
-            ? placesData.filter(place =>
-                place.name.toLowerCase().includes(filterText)
-              )
-            : placesData
-        }
-      />
+      <div className="mapWrapper">
+        <input
+          type="text"
+          name="filter"
+          placeholder={"find your city..."}
+          onChange={handleInput}
+          value={valueInput}
+        ></input>
+        <MapContiner
+          handleClick={handleClick}
+          places={
+            filterText
+              ? placesData.filter(place =>
+                  place.name.toLowerCase().includes(filterText)
+                )
+              : placesData
+          }
+        />
+      </div>
       <List
         cinema={cinema}
         favourites={favourites}
