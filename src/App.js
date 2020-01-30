@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ReactDOM from "react-dom";
 import { useState } from "react";
 import "../css/style.css";
@@ -6,47 +6,74 @@ import places from "../data/places_data";
 
 import MapContiner from "./Map";
 import List from "./List";
+import Movies from "./Movies";
 
 const App = () => {
-  const [cinema, setcinema] = useState("");
-  const [selected, setSelected] = useState([]);
+  const [cinema, setCinema] = useState(null);
+  const [filterText, setFilterText] = useState("");
+  const [favourites, setFavourites] = useState([]);
+  const [valueInput, setValueInput] = useState("");
+
+  const placesData = places;
+
+  useEffect(() => {
+    if (cinema) {
+      console.log(`I clicked on ${cinema}`);
+      addcinema(cinema);
+      setFilterText(null);
+      setCinema(null);
+      setValueInput("");
+      console.log(`My value is ${valueInput}`);
+    }
+  }, [cinema]);
+
+  useEffect(() => {
+    if (favourites.length) {
+      console.log(`My favourites ${favourites}`);
+    }
+  }, [favourites]);
 
   function handleClick(name) {
-    setcinema(name);
-    console.log(`I clicked on ${cinema}`);
-    addcinema(name);
+    setCinema(name);
   }
   function handleFilter(val) {
-    const filtered = places.filter(place => place.name.includes(val));
-    console.log(filtered);
-    // if (filtered.length > 1) {
-    //   setSelected([filtered]);
-    // }
+    setFilterText(val);
   }
 
   function addcinema(val) {
-    if (selected.length < 1) {
-      setSelected([val]);
+    if (favourites.length < 1) {
+      setFavourites([val]);
     }
-    if (!selected.includes(val)) {
-      setSelected([...selected, val]);
+    if (!favourites.includes(val)) {
+      setFavourites([...favourites, val]);
     }
-    console.log(`I selected ${selected}`);
   }
 
   function deletecinema(name) {
-    setSelected(currentPlaces => currentPlaces.filter(x => x !== name));
+    setFavourites(currentPlaces => currentPlaces.filter(x => x !== name));
   }
 
   return (
     <div className="wrapper">
-      <MapContiner handleClick={handleClick} places={places} />
+      <MapContiner
+        handleClick={handleClick}
+        places={
+          filterText
+            ? placesData.filter(place =>
+                place.name.toLowerCase().includes(filterText)
+              )
+            : placesData
+        }
+      />
       <List
-        places={places}
-        selected={selected}
+        cinema={cinema}
+        favourites={favourites}
         deletecinema={deletecinema}
         handleFilter={handleFilter}
+        valueInput={valueInput}
+        setValueInput={setValueInput}
       />
+      {/* <Movies /> */}
     </div>
   );
 };

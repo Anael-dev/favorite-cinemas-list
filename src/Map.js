@@ -69,8 +69,9 @@ const MapWrapped = withScriptjs(withGoogleMap(Map));
 
 export default function MapContiner(props) {
   const { handleClick, places } = props;
+  console.log(`map container ${places}`);
   return (
-    <div style={{ minWidth: "400px", height: "600px" }}>
+    <div style={{ minWidth: "400px", height: "100vh" }}>
       <MapWrapped
         googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${process.env.GOOGLE_KEY}`}
         loadingElement={<div style={{ height: `100%` }} />}
