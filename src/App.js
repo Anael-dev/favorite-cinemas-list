@@ -6,7 +6,6 @@ import places from "../data/places_data";
 
 import MapContiner from "./Map";
 import List from "./List";
-import Movies from "./Movies";
 
 const App = () => {
   const [cinema, setCinema] = useState(null);
